@@ -1,0 +1,18 @@
+[Unit]
+Description=Download and validate the GeoIP Legacy databases
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=rust-geoip
+Group=rust-geoip
+EnvironmentFile=-/etc/default/rust-geoip
+ExecStart=/usr/local/sbin/rust-geoip-update
+ProtectSystem=strict
+ReadWritePaths=/var/lib/rust-geoip
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+NoNewPrivileges=true
+CapabilityBoundingSet=
