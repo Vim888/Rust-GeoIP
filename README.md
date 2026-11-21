@@ -113,9 +113,11 @@ The speed increase uses median lookup times from the same run and equals `(CLI t
 
 **PHP client measurements.** With a fresh connection to the Rust service, median latency was about 14 µs and p99 ranged from 20 to 48 µs across runs. Processing the IP inside the daemon took about 3 µs. In a separate load test a single request-handling thread reached about 140,000 lookups/s at saturation. The daemon also accepted 20,000 connections that sent no requests and continued serving lookups.
 
-### Current version for Debian 13
+### Current version for Debian 13 — 4 x86-64 vCPUs, 3 GiB RAM
 
-All **510 of 510** IPv4 and IPv6 lookups matched `geoiplookup` or `geoiplookup6` on the same database files. The test also confirmed that a fresh socket and a reused socket returned identical JSON values. These timings were measured on an x86-64 Debian guest under QEMU software emulation.
+**Low-end VPS simulation.** The benchmark ran in a QEMU virtual machine with software CPU emulation (TCG, `max` CPU model).
+
+All **510 of 510** IPv4 and IPv6 lookups matched `geoiplookup` or `geoiplookup6` on the same database files. The test also confirmed that a fresh socket and a reused socket returned identical JSON values.
 
 | Request path | Median (µs) | p95 (µs) | Speed increase over CLI |
 | --- | ---: | ---: | ---: |
